@@ -93,3 +93,39 @@ export function queryOnePlayer(memberId) {
     params: { memberId }
   })
 }
+
+// 获取公告列表接口
+export function getNewsList(data) {
+  return request({
+    url: '/oss/sys/news/getNewsPage',
+    method: 'post',
+    data
+  })
+}
+
+// 添加公告接口
+export function addNews(data) {
+  return request({
+    url: '/oss/sys/news/publish',
+    method: 'post',
+    data
+  })
+}
+
+// 获取公告详情接口
+export function getNewsDetail(newsId) {
+  return request({
+    url: '/oss/sys/news/getNewsInfo',
+    method: 'post',
+    params: { newsId }
+  })
+}
+
+// 修改公告接口
+export function updNews(data) {
+  return request({
+    url: '/oss/sys/news/modify',
+    method: 'post',
+    data
+  })
+}

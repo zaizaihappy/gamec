@@ -18,6 +18,9 @@ export default {
     'daili-beanDetail': '代理商列表',
     'player-beanDetail': '玩家列表',
     'beanDetail': '金豆明细列表',
+    newsTable: '公告管理',
+    'news-list': '公告列表',
+    'news-add': '公告添加',
     errorPages: '错误页面',
     page401: '401',
     page404: '404'

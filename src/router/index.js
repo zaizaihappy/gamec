@@ -192,6 +192,30 @@ export const asyncRouterMap = [
       }
     ]
   },
+  {/* 公告管理 */
+    path: '/newsTable',
+    component: Layout,
+    redirect: '/table/complex-table',
+    name: 'newsTable',
+    meta: {
+      title: 'newsTable',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: 'news-list',
+        component: () => import('@/views/table/news/newsList'),
+        name: 'news-list',
+        meta: { title: 'news-list' }
+      },
+      {
+        path: 'news-add',
+        component: () => import('@/views/table/news/addNews'),
+        name: 'news-add',
+        meta: { title: 'news-add' }
+      }
+    ]
+  },
   {
     path: '/error',
     component: Layout,
