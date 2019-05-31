@@ -58,6 +58,15 @@ export function updAgent(data) {
   })
 }
 
+// 修改代理商状态
+export function updAgentStatus(data) {
+  return request({
+    url: '/oss/sys/agent/resetAgentStatus',
+    method: 'post',
+    data
+  })
+}
+
 // 获取代理商列表
 export function getAgentList(data) {
   return request({
