@@ -85,7 +85,7 @@ export function queryOneAgent(agentId) {
   })
 }
 
-// 获取代理商列表
+// 获取玩家列表
 export function getPlayerList(data) {
   return request({
     url: '/oss/sys/player/getPlayerPage',
@@ -100,6 +100,15 @@ export function queryOnePlayer(memberId) {
     url: '/oss/sys/player/getPlayerInfo',
     method: 'post',
     params: { memberId }
+  })
+}
+
+// 获取玩家列表
+export function updPlayerStatus(data) {
+  return request({
+    url: '/oss/sys/player/resetPlayerStatus',
+    method: 'post',
+    data
   })
 }
 

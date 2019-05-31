@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="filter-container">
       <!-- 搜索框 -->
-      <el-input :placeholder="$t('userMaTable.title')" v-model="listQuery.title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input :placeholder="$t('userMaTable.title')" v-model="listQuery.agentName" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
       <!-- 搜索按钮 -->
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ $t('userMaTable.search') }}</el-button>
       <!-- 添加按钮 -->
@@ -23,7 +23,7 @@
       @sort-change="sortChange">
       <el-table-column label="序号" prop="id" sortable="custom" align="center" width="65">
         <template slot-scope="scope">
-          <span>{{ scope.$index+1 }}</span>
+          <span>{{ scope.$index + 1 }}</span>
         </template>
       </el-table-column>
       <el-table-column label="代理商名称" align="center" width="120px">
@@ -118,7 +118,7 @@ export default {
         pageNo: 1,
         pageSize: 20,
         importance: undefined,
-        title: undefined,
+        agentName: '',
         type: undefined,
         sort: '+id'
       },

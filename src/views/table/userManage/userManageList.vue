@@ -23,7 +23,7 @@
       @sort-change="sortChange">
       <el-table-column label="序号" prop="id" sortable="custom" align="center" width="65">
         <template slot-scope="scope">
-          <span>{{ scope.row.memberId }}</span>
+          <span>{{ scope.$index + 1 }}</span>
         </template>
       </el-table-column>
       <el-table-column label="会员昵称" align="center" width="120px">
@@ -73,15 +73,18 @@
       </el-table-column>
       <el-table-column label="状态" width="110px" align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.memberStatus === 1" style="color: #13ce66;">有效</span>
-          <span v-if="scope.row.memberStatus === 0" style="color: #a94442;">停用</span>
+          <span v-if="scope.row.memberStatus === 1" style="color: #13ce66;">
+            有效<el-button type="primary" size="mini" @click="handleModifyStatus(scope.row,0,scope.$index)">停用</el-button>
+          </span>
+          <span v-if="scope.row.memberStatus === 0" style="color: #a94442;">
+            停用<el-button type="primary" size="mini" @click="handleModifyStatus(scope.row,1,scope.$index)">开启</el-button>
+          </span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('userMaTable.actions')" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row.memberId)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleModifyStatus(scope.row.memberId,'deleted')">删除
-          </el-button>
+          <el-button size="mini" type="danger" @click="handleModifyStatus(scope.row,-1,scope.$index)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -91,7 +94,7 @@
 </template>
 
 <script>
-import { getPlayerList } from '@/api/article'
+import { getPlayerList, updPlayerStatus } from '@/api/article'
 import waves from '@/directive/waves' // Waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
@@ -123,6 +126,10 @@ export default {
         mobile: '',
         type: undefined,
         sort: '+id'
+      },
+      json: {
+        memberId: 0,
+        memberStatus: 0
       },
       importanceOptions: [1, 2, 3],
       sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
@@ -176,12 +183,23 @@ export default {
       this.listQuery.page = 1
       this.getList()
     },
-    handleModifyStatus(row, status) {
-      this.$message({
-        message: '操作成功',
-        type: 'success'
+    handleModifyStatus(row, status, index) {
+      this.json.memberId = row.memberId
+      this.json.memberStatus = status
+      updPlayerStatus(this.json).then(response => {
+        if (response.data.success) {
+          if (status === -1) {
+            this.list.splice(index, 1)
+          }
+          this.$message({
+            message: '操作成功',
+            type: 'success'
+          })
+          row.memberStatus = status
+        }
+      }).catch(err => {
+        console.log(err)
       })
-      row.status = status
     },
     sortChange(data) {
       const { prop, order } = data
@@ -227,13 +245,13 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-        const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
+        const tHeader = ['会员昵称', '会员编码', '真实姓名', '手机号', 'QQ', '常用邮箱', '微信号', '最后登录IP地址', '会员等级', '状态']
+        const filterVal = ['memberNickname', 'memberName', 'userName', 'memberMobile', 'memberQq', 'memberEmail', 'memberWx', 'lastIp', 'memberLevel', 'memberStatus']
         const data = this.formatJson(filterVal, this.list)
         excel.export_json_to_excel({
           header: tHeader,
           data,
-          filename: 'table-list'
+          filename: '玩家表格数据'
         })
         this.downloadLoading = false
       })
