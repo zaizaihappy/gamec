@@ -211,13 +211,13 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-        const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
+        const tHeader = ['公告标题', '公告内容', '状态(1:有效   0:停用)']
+        const filterVal = ['newsTitle', 'newsContent', 'newsStatus']
         const data = this.formatJson(filterVal, this.list)
         excel.export_json_to_excel({
           header: tHeader,
           data,
-          filename: 'table-list'
+          filename: '公告列表数据'
         })
         this.downloadLoading = false
       })
