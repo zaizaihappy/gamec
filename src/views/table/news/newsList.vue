@@ -38,14 +38,18 @@
       </el-table-column>
       <el-table-column label="状态" width="110px" align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.newsStatus === 1" style="color: #13ce66;">有效</span>
-          <span v-if="scope.row.newsStatus === 0" style="color: #a94442;">停用</span>
+          <span v-if="scope.row.newsStatus === 1" style="color: #13ce66;">
+            有效<el-button type="primary" size="mini" @click="handleModifyStatus(scope.row,0,scope.$index)">停用</el-button>
+          </span>
+          <span v-if="scope.row.newsStatus === 0" style="color: #a94442;">
+            停用<el-button type="primary" size="mini" @click="handleModifyStatus(scope.row,1,scope.$index)">开启</el-button>
+          </span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('userMaTable.actions')" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row.newsId)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleModifyStatus(scope.row.newsId,'deleted')">删除
+          <el-button size="mini" type="danger" @click="handleModifyStatus(scope.row,-1,scope.$index)">删除
           </el-button>
         </template>
       </el-table-column>
@@ -56,7 +60,7 @@
 </template>
 
 <script>
-import { getNewsList } from '@/api/article'
+import { getNewsList, updNewsStatus } from '@/api/article'
 import waves from '@/directive/waves' // Waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
@@ -88,6 +92,10 @@ export default {
         title: undefined,
         type: undefined,
         sort: '+id'
+      },
+      json: {
+        newsId: 0,
+        newsStatus: 0
       },
       importanceOptions: [1, 2, 3],
       sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
@@ -141,12 +149,23 @@ export default {
       this.listQuery.page = 1
       this.getList()
     },
-    handleModifyStatus(row, status) {
-      this.$message({
-        message: '操作成功',
-        type: 'success'
+    handleModifyStatus(row, status, index) {
+      this.json.newsId = row.newsId
+      this.json.newsStatus = status
+      updNewsStatus(this.json).then(response => {
+        if (response.data.success) {
+          if (status === -1) {
+            this.list.splice(index, 1)
+          }
+          this.$message({
+            message: '操作成功',
+            type: 'success'
+          })
+          row.newsStatus = status
+        }
+      }).catch(err => {
+        console.log(err)
       })
-      row.status = status
     },
     sortChange(data) {
       const { prop, order } = data

@@ -129,3 +129,12 @@ export function updNews(data) {
     data
   })
 }
+
+// 获取公告详情接口
+export function updNewsStatus(data) {
+  return request({
+    url: '/oss/sys/news/setNewsStatus',
+    method: 'post',
+    data
+  })
+}
