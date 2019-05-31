@@ -8,61 +8,73 @@
       <div class="createPost-main-container">
         <el-row>
           <el-col :span="24">
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="会员昵称" prop="memberNickname">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="会员昵称" prop="memberNickname">
               <el-input :rows="1" v-model="postForm.memberNickname" type="textarea" class="article-textarea" autosize placeholder="请输入内容"/>
               <span v-show="memberNicknameLength" class="word-counter">{{ memberNicknameLength }}字</span>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="会员编码" prop="memberName">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="会员编码" prop="memberName">
               <el-input :rows="1" v-model="postForm.memberName" type="number" class="article-textarea" autosize placeholder="请输入内容"/>
               <span v-show="memberNameLength" class="word-counter">{{ memberNameLength }}字</span>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="真实姓名" prop="userName">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="登录密码" prop="loginPass">
+              <el-input :rows="1" v-model="postForm.loginPass" type="textarea" class="article-textarea" autosize placeholder="请输入登录密码"/>
+              <span v-show="loginPassLength" class="word-counter">{{ loginPassLength }}字</span>
+            </el-form-item>
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="银行账户密码" prop="bankPass">
+              <el-input :rows="1" v-model="postForm.bankPass" type="textarea" class="article-textarea" autosize placeholder="请输入登录密码"/>
+              <span v-show="bankPassLength" class="word-counter">{{ bankPassLength }}字</span>
+            </el-form-item>
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="真实姓名" prop="userName">
               <el-input :rows="1" v-model="postForm.userName" type="textarea" class="article-textarea" autosize placeholder="请输入真实姓名"/>
               <span v-show="userNameLength" class="word-counter">{{ userNameLength }}字</span>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="手机号码" prop="memberMobile">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="头像地址" prop="memberIconUrl">
+              <el-input :rows="1" v-model="postForm.memberIconUrl" type="textarea" class="article-textarea" autosize placeholder="请输入"/>
+              <span v-show="memberIconUrlLength" class="word-counter">{{ memberIconUrlLength }}字</span>
+            </el-form-item>
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="手机号码" prop="memberMobile">
               <el-input :rows="1" v-model="postForm.memberMobile" type="textarea" class="article-textarea" autosize placeholder="请输入手机号码"/>
               <span v-show="memberMobileLength" class="word-counter">{{ memberMobileLength }}字</span>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="QQ号码" prop="memberQq">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="QQ号码" prop="memberQq">
               <el-input :rows="1" v-model="postForm.memberQq" type="number" class="article-textarea" autosize placeholder="请输入QQ号码"/>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="常用邮箱" prop="memberEmail">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="常用邮箱" prop="memberEmail">
               <el-input :rows="1" v-model="postForm.memberEmail" type="text" class="article-textarea" autosize placeholder="请输入常用邮箱"/>
             </el-form-item>
 
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="微信" prop="memberWx">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="微信" prop="memberWx">
               <el-input :rows="1" v-model="postForm.memberWx" type="textarea" class="article-textarea" autosize placeholder="请输入微信号"/>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="80px" label="登录是否微信验证">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="登录是否微信验证">
               <el-radio-group v-model="postForm.isWxcheck">
                 <el-radio :label="1">是</el-radio>
                 <el-radio :label="0">否</el-radio>
               </el-radio-group>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="会员等级" prop="memberLevel">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="会员等级" prop="memberLevel">
               <el-input :rows="1" v-model="postForm.memberLevel" type="number" class="article-textarea" autosize placeholder="0-100"/>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="会员经验值" prop="memberXp">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="会员经验值" prop="memberXp">
               <el-input :rows="1" v-model="postForm.memberXp" type="number" class="article-textarea" autosize placeholder="0-100"/>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="抽成比例" prop="gameRate">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="抽成比例" prop="gameRate">
               <el-input :rows="1" v-model="postForm.gameRate" type="number" class="article-textarea" autosize placeholder="0-100"/>
             </el-form-item>
-            <el-form-item style="margin-bottom: 40px;" label-width="90px" label="推广地址" prop="extendLinks">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="推广地址" prop="extendLinks">
               <el-input :rows="1" v-model="postForm.extendLinks" type="textarea" class="article-textarea" autosize placeholder="请输入推广链接地址"/>
               <span v-show="extendLinksLength" class="word-counter">{{ extendLinksLength }}字</span>
             </el-form-item>
             <div class="postInfo-container">
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label-width="80px" label="注册时间" class="postInfo-container-item">
+                  <el-form-item label-width="135px" label="注册时间" class="postInfo-container-item">
                     <el-date-picker v-model="postForm.registerDate" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"/>
                   </el-form-item>
                 </el-col>
               </el-row>
             </div>
-            <el-form-item style="margin-bottom: 40px;" label-width="80px" label="状态">
+            <el-form-item style="margin-bottom: 40px;" label-width="135px" label="状态">
               <el-radio-group v-model="postForm.memberStatus">
                 <el-radio :label="1">有效</el-radio>
                 <el-radio :label="-1">删除</el-radio>
@@ -78,13 +90,16 @@
 <script>
 import MDinput from '@/components/MDinput'
 import Sticky from '@/components/Sticky' // 粘性header组件
-import { addAgent, queryOnePlayer, updAgent } from '@/api/article'
+import { addPlayer, queryOnePlayer, updPlayer } from '@/api/article'
 
 const defaultForm = {
   memberStatus: 1, // 会员状态
   memberNickname: '', // 会员昵称
   memberName: '', // 会员编码
+  loginPass: '', // 登录密码
+  bankPass: '', // 银行账户密码
   userName: '', // 真实姓名
+  memberIconUrl: '', // 头像地址
   memberMobile: '', // 手机号码
   agentDesc: '', // 代理商描述
   memberQq: '', // memberQq号码
@@ -95,6 +110,8 @@ const defaultForm = {
   memberXp: 0, // 会员经验值
   extendLinks: '', // 推广链接地址
   gameRate: '0', // 抽成比例
+  agentID: -1, // 代理商ID(-1为系统添加玩家 其他大于0的值为代理商ID)
+  memberType: 2, // 玩家类型(1玩家-自行注册 2代理玩家-代理商创建)
   registerDate: new Date()
 }
 
@@ -127,14 +144,17 @@ export default {
         memberNickname: [{ validator: validateRequire }],
         memberName: [{ validator: validateRequire }],
         memberQq: [{ validator: validateRequire }],
+        loginPass: [{ validator: validateRequire }],
         agentDesc: [{ validator: validateRequire }],
         memberEmail: [{ validator: validateRequire }],
         memberWx: [{ validator: validateRequire }],
         memberLevel: [{ validator: validateRequire }],
         userName: [{ validator: validateRequire }],
+        memberIconUrl: [{ validator: validateRequire }],
         memberMobile: [{ validator: validateRequire }],
         extendLinks: [{ validator: validateRequire }],
-        gameRate: [{ validator: validateRequire }]
+        gameRate: [{ validator: validateRequire }],
+        bankPass: [{ validator: validateRequire }]
       },
       tempRoute: {}
     }
@@ -162,6 +182,15 @@ export default {
     },
     extendLinksLength() {
       return this.postForm.extendLinks.length
+    },
+    memberIconUrlLength() {
+      return this.postForm.memberIconUrl.length
+    },
+    loginPassLength() {
+      return this.postForm.loginPass.length
+    },
+    bankPassLength() {
+      return this.postForm.bankPass.length
     }
   },
   created() {
@@ -175,20 +204,10 @@ export default {
     }
   },
   methods: {
-    fetchData(id) {
-      addAgent(this.postForm).then(response => {
-        this.postForm = response.data
-        // Just for test
-        this.postForm.title += `   Article Id:${this.postForm.id}`
-        this.postForm.memberNickname += `   Article Id:${this.postForm.id}`
-      }).catch(err => {
-        console.log(err)
-      })
-    },
     submitForm() {
       this.postForm.registerDate = '2019-02-02 20:00:00'
-      if (this.agentId > 0) {
-        updAgent(this.postForm).then(response => {
+      if (this.memberId > 0) {
+        updPlayer(this.postForm).then(response => {
           if (response.data.success) {
             this.loading = true
             this.$notify({
@@ -199,7 +218,7 @@ export default {
             })
             this.postForm.status = 'published'
             this.loading = false
-            this.$router.push({ path: '/agentUserList/agent-list-table', query: { data: '' }})
+            this.$router.push({ path: '/userList/list-user-table', query: { data: '' }})
           } else {
             console.log(response.data.errorDetail)
           }
@@ -207,7 +226,7 @@ export default {
           console.log(err)
         })
       } else {
-        addAgent(this.postForm).then(response => {
+        addPlayer(this.postForm).then(response => {
           if (response.data.success) {
             this.loading = true
             this.$notify({
@@ -218,7 +237,7 @@ export default {
             })
             this.postForm.status = 'published'
             this.loading = false
-            this.$router.push({ path: '/agentUserList/agent-list-table', query: { data: '' }})
+            this.$router.push({ path: '/userList/list-user-table', query: { data: '' }})
           } else {
             console.log(response.data.errorDetail)
           }
@@ -237,7 +256,10 @@ export default {
         this.postForm.memberLevel.length === 0 ||
         this.postForm.registerDate.length === 0 ||
         this.postForm.userName.length === 0 ||
-        this.postForm.memberMobile.length === 0
+        this.postForm.memberMobile.length === 0 ||
+        this.postForm.memberIconUrl.length === 0 ||
+        this.postForm.loginPass.length === 0 ||
+        this.postForm.bankPass.length === 0
       ) {
         this.$message({
           message: '请填写必要的标题和内容 ',

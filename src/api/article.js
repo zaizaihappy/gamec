@@ -112,6 +112,24 @@ export function updPlayerStatus(data) {
   })
 }
 
+// 添加玩家信息
+export function addPlayer(data) {
+  return request({
+    url: '/oss/sys/player/createPlayer',
+    method: 'post',
+    data
+  })
+}
+
+// 编辑玩家信息
+export function updPlayer(data) {
+  return request({
+    url: '/oss/sys/player/editPlayer',
+    method: 'post',
+    data
+  })
+}
+
 // 获取公告列表接口
 export function getNewsList(data) {
   return request({
