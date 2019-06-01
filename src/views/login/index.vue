@@ -14,7 +14,7 @@
         </span>
         <el-input
           v-model="loginForm.userAccount"
-          :placeholder="$t('login.userAccount')"
+          placeholder="请输入用户名"
           name="userAccount"
           type="text"
           auto-complete="on"
@@ -28,7 +28,7 @@
         <el-input
           :type="passwordType"
           v-model="loginForm.userPassword"
-          :placeholder="$t('login.userPassword')"
+          placeholder="请输入登录密码"
           name="userPassword"
           auto-complete="on"
           @keyup.enter.native="handleLogin" />

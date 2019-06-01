@@ -9,7 +9,8 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ $t('userMaTable.search') }}</el-button>
       <!-- 导出按钮 -->
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">{{ $t('userMaTable.export') }}</el-button>
-
+      <!-- 返回按钮 -->
+      <el-button v-waves class="filter-item" type="danger" @click="backParentPage">返回上级</el-button>
     </div>
 
     <el-table
@@ -183,6 +184,9 @@ export default {
     handleFilter() {
       this.listQuery.page = 1
       this.getList()
+    },
+    backParentPage() { // 返回按钮
+      window.history.go(-1)
     },
     sortChange(data) {
       const { prop, order } = data

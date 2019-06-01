@@ -187,6 +187,7 @@ export const asyncRouterMap = [
       {
         path: 'beanDetail',
         component: () => import('@/views/table/beanDetail/beanDetailList'),
+        hidden: true,
         name: 'beanDetail',
         meta: { title: 'beanDetail' }
       }
