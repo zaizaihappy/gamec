@@ -174,3 +174,39 @@ export function updNewsStatus(data) {
     data
   })
 }
+
+// 金豆明细管理-获取代理商列表
+export function getAgentBeanList(data) {
+  return request({
+    url: '/oss/sys/goldenBean/agentPage',
+    method: 'post',
+    data
+  })
+}
+
+// 金豆明细管理-获取代理商金豆明显列表
+export function getAgentBeanDetail(data) {
+  return request({
+    url: '/oss/sys/goldenBean/agentGBByCondition',
+    method: 'post',
+    data
+  })
+}
+
+// 金豆明细管理-获取玩家列表
+export function getPlayerBeanList(data) {
+  return request({
+    url: '/oss/sys/goldenBean/playerPage',
+    method: 'post',
+    data
+  })
+}
+
+// 金豆明细管理-获取玩家金豆明显列表
+export function getPlayerBeanDetail(data) {
+  return request({
+    url: '/oss/sys/goldenBean/playerGBByCondition',
+    method: 'post',
+    data
+  })
+}

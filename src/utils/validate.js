@@ -40,3 +40,15 @@ export function validateEmail(email) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(email)
 }
+
+// 将时间转换为 yyyy-MM-dd HH:mm:ss
+export function getDateyyyyMMddHHmmss(inputTime) {
+  const date = new Date(inputTime)
+  const y = date.getFullYear()
+  const m = (date.getMonth() + 1) < 10 ? ('0' + (date.getMonth() + 1)) : (date.getMonth() + 1)
+  const d = date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate()
+  const h = date.getHours() < 10 ? ('0' + date.getHours()) : date.getHours()
+  const minute = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes()
+  const second = date.getSeconds() < 10 ? ('0' + date.getSeconds()) : date.getSeconds()
+  return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second
+}

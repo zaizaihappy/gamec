@@ -16,15 +16,6 @@
               <el-input :rows="1" v-model="postForm.newsContent" type="textarea" class="article-textarea" autosize placeholder="请输入内容"/>
               <span v-show="newsContentLength" class="word-counter">{{ newsContentLength }}字</span>
             </el-form-item>
-            <div class="postInfo-container">
-              <el-row>
-                <el-col :span="10">
-                  <el-form-item label-width="80px" label="注册时间" class="postInfo-container-item">
-                    <el-date-picker v-model="postForm.newsDate" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"/>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </div>
             <el-form-item style="margin-bottom: 40px;" label-width="80px" label="状态">
               <el-radio-group v-model="postForm.newsStatus">
                 <el-radio :label="1">有效</el-radio>
@@ -42,12 +33,12 @@
 import MDinput from '@/components/MDinput'
 import Sticky from '@/components/Sticky' // 粘性header组件
 import { addNews, getNewsDetail, updNews } from '@/api/article'
+import { getDateyyyyMMddHHmmss } from '@/utils/validate'
 
 const defaultForm = {
   newsStatus: 1,
   newsTitle: '', // 代理商名称
-  newsContent: '', // 代理商编码
-  newsDate: new Date()
+  newsContent: '' // 代理商编码
 }
 
 export default {
@@ -114,7 +105,7 @@ export default {
       })
     },
     submitForm() {
-      this.postForm.newsDate = '2019-02-02 20:00:00'
+      this.postForm.newsDate = getDateyyyyMMddHHmmss(new Date())
       if (this.newsId > 0) {
         updNews(this.postForm).then(response => {
           if (response.data.success) {

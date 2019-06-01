@@ -21,7 +21,7 @@
       highlight-current-row
       style="width: 100%;"
       @sort-change="sortChange">
-      <el-table-column label="序号" prop="id" sortable="custom" align="center" width="65">
+      <el-table-column label="序号" prop="id" sortable="custom" align="center" width="110">
         <template slot-scope="scope">
           <span>{{ scope.$index + 1 }}</span>
         </template>

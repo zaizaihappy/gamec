@@ -42,15 +42,6 @@
             <el-form-item style="margin-bottom: 40px;" label-width="90px" label="提现返点" prop="cashPoint">
               <el-input :rows="1" v-model="postForm.cashPoint" type="number" class="article-textarea" autosize placeholder="0-100"/>
             </el-form-item>
-            <div class="postInfo-container">
-              <el-row>
-                <el-col :span="10">
-                  <el-form-item label-width="80px" label="注册时间" class="postInfo-container-item">
-                    <el-date-picker v-model="postForm.registerDate" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"/>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </div>
             <el-form-item style="margin-bottom: 40px;" label-width="80px" label="状态">
               <el-radio-group v-model="postForm.agentStatus">
                 <el-radio :label="1">有效</el-radio>
@@ -68,6 +59,7 @@
 import MDinput from '@/components/MDinput'
 import Sticky from '@/components/Sticky' // 粘性header组件
 import { addAgent, queryOneAgent, updAgent } from '@/api/article'
+import { getDateyyyyMMddHHmmss } from '@/utils/validate'
 
 const defaultForm = {
   agentStatus: 1,
@@ -79,8 +71,7 @@ const defaultForm = {
   qq: '', // QQ号码
   mobile: '', // 联系电话
   rechargePoint: '', // 充值返点
-  cashPoint: '', // 提现返点
-  registerDate: new Date()
+  cashPoint: '' // 提现返点
 }
 
 export default {
@@ -166,7 +157,7 @@ export default {
       })
     },
     submitForm() {
-      this.postForm.registerDate = '2019-02-02 20:00:00'
+      this.postForm.registerDate = getDateyyyyMMddHHmmss(new Date())
       if (this.agentId > 0) {
         updAgent(this.postForm).then(response => {
           if (response.data.success) {
@@ -215,7 +206,6 @@ export default {
         this.postForm.mobile.length === 0 ||
         this.postForm.rechargePoint.length === 0 ||
         this.postForm.cashPoint.length === 0 ||
-        this.postForm.registerDate.length === 0 ||
         this.postForm.agentAccount.length === 0 ||
         this.postForm.agentPassword.length === 0
       ) {

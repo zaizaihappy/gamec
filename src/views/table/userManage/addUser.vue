@@ -65,15 +65,6 @@
               <el-input :rows="1" v-model="postForm.extendLinks" type="textarea" class="article-textarea" autosize placeholder="请输入推广链接地址"/>
               <span v-show="extendLinksLength" class="word-counter">{{ extendLinksLength }}字</span>
             </el-form-item>
-            <div class="postInfo-container">
-              <el-row>
-                <el-col :span="10">
-                  <el-form-item label-width="135px" label="注册时间" class="postInfo-container-item">
-                    <el-date-picker v-model="postForm.registerDate" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"/>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </div>
             <el-form-item style="margin-bottom: 40px;" label-width="135px" label="状态">
               <el-radio-group v-model="postForm.memberStatus">
                 <el-radio :label="1">有效</el-radio>
@@ -91,6 +82,7 @@
 import MDinput from '@/components/MDinput'
 import Sticky from '@/components/Sticky' // 粘性header组件
 import { addPlayer, queryOnePlayer, updPlayer } from '@/api/article'
+import { getDateyyyyMMddHHmmss } from '@/utils/validate'
 
 const defaultForm = {
   memberStatus: 1, // 会员状态
@@ -205,7 +197,7 @@ export default {
   },
   methods: {
     submitForm() {
-      this.postForm.registerDate = '2019-02-02 20:00:00'
+      this.postForm.registerDate = getDateyyyyMMddHHmmss(new Date())
       if (this.memberId > 0) {
         updPlayer(this.postForm).then(response => {
           if (response.data.success) {
