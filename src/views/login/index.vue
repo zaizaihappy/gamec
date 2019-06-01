@@ -8,28 +8,28 @@
         <lang-select class="set-language"/>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="userAccount">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          v-model="loginForm.username"
-          :placeholder="$t('login.username')"
-          name="username"
+          v-model="loginForm.userAccount"
+          :placeholder="$t('login.userAccount')"
+          name="userAccount"
           type="text"
           auto-complete="on"
         />
       </el-form-item>
 
-      <el-form-item prop="password">
+      <el-form-item prop="userPassword">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
         <el-input
           :type="passwordType"
-          v-model="loginForm.password"
-          :placeholder="$t('login.password')"
-          name="password"
+          v-model="loginForm.userPassword"
+          :placeholder="$t('login.userPassword')"
+          name="userPassword"
           auto-complete="on"
           @keyup.enter.native="handleLogin" />
         <span class="show-pwd" @click="showPwd">
@@ -38,7 +38,7 @@
       </el-form-item>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">{{ $t('login.logIn') }}</el-button>
-
+      <span style="color: #f56c6c;">{{ errMeg }}</span>
     </el-form>
 
     <el-dialog :title="$t('login.thirdparty')" :visible.sync="showDialog" append-to-body>
@@ -77,12 +77,13 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '1111111'
+        userAccount: '',
+        userPassword: ''
       },
+      errMeg: '',
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        userAccount: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        userPassword: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       passwordType: 'password',
       loading: false,
@@ -114,6 +115,15 @@ export default {
       }
     },
     handleLogin() {
+      // loginByUsername(this.loginForm).then(response => {
+      //   if (response.data.success) {
+      //     this.loading = false
+      //     this.$router.push({ path: this.redirect || '/' })
+      //     this.errMeg = response.data.errorDetail
+      //   }
+      // }).catch(err => {
+      //   console.log(err)
+      // })
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true

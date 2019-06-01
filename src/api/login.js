@@ -1,17 +1,8 @@
 import request from '@/utils/request'
 
-export function loginByUsername(username, password) {
-  const data = {
-    username,
-    password,
-    memberName: '123',
-    memberNickname: '123',
-    memberMobile: '15442256369',
-    registerDate: '2017-08-08 05:05:05',
-    parentId: '1'
-  }
+export function loginByUsername(data) {
   return request({
-    url: '/login/login',
+    url: '/oss/sys/login',
     method: 'post',
     data
   })
