@@ -234,8 +234,8 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['代理商名称', '代理商编码', '代理商账户', '代理商QQ', '代理商手机', '充值返点', '提现返点', '代理商状态']
-        const filterVal = ['agentName', 'agentCode', 'agentAccount', 'qq', 'mobile', 'rechargePoint', 'cashPoint', 'agentStatus']
+        const tHeader = ['代理商名称', '代理商编码', '代理商账户', '代理商QQ', '代理商手机', '代理商状态']
+        const filterVal = ['agentName', 'agentCode', 'agentAccount', 'qq', 'mobile', 'agentStatus']
         const data = this.formatJson(filterVal, this.list)
         excel.export_json_to_excel({
           header: tHeader,

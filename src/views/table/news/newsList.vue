@@ -198,16 +198,6 @@ export default {
     handleUpdate(newsId) {
       this.$router.push({ path: '/newsTable/news-add', query: { newsId: newsId }})
     },
-    handleDelete(row) {
-      this.$notify({
-        title: '成功',
-        message: '删除成功',
-        type: 'success',
-        duration: 2000
-      })
-      const index = this.list.indexOf(row)
-      this.list.splice(index, 1)
-    },
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
