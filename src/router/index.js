@@ -217,6 +217,30 @@ export const asyncRouterMap = [
       }
     ]
   },
+  {/* 商品管理 */
+    path: '/goodsTable',
+    component: Layout,
+    redirect: '/table/complex-table',
+    name: 'goodsTable',
+    meta: {
+      title: 'goodsTable',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: 'goods-list',
+        component: () => import('@/views/table/goodsManage/goodsManageList'),
+        name: 'goods-list',
+        meta: { title: 'goods-list' }
+      },
+      {
+        path: 'goods-add',
+        component: () => import('@/views/table/goodsManage/addGoods'),
+        name: 'goods-add',
+        meta: { title: 'goods-add' }
+      }
+    ]
+  },
   {
     path: '/error',
     component: Layout,

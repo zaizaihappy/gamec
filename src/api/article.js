@@ -40,7 +40,7 @@ export function updateArticle(data) {
   })
 }
 
-// 添加代理商
+// 代理商管理-添加代理商
 export function addAgent(data) {
   return request({
     url: '/oss/sys/agent/add',
@@ -49,7 +49,7 @@ export function addAgent(data) {
   })
 }
 
-// 修改代理商
+// 代理商管理-修改代理商
 export function updAgent(data) {
   return request({
     url: '/oss/sys/agent/modify',
@@ -58,7 +58,7 @@ export function updAgent(data) {
   })
 }
 
-// 修改代理商状态
+// 代理商管理-修改代理商状态
 export function updAgentStatus(data) {
   return request({
     url: '/oss/sys/agent/resetAgentStatus',
@@ -67,7 +67,7 @@ export function updAgentStatus(data) {
   })
 }
 
-// 获取代理商列表
+// 代理商管理-获取代理商列表
 export function getAgentList(data) {
   return request({
     url: '/oss/sys/agent/agentInfoPage',
@@ -76,7 +76,7 @@ export function getAgentList(data) {
   })
 }
 
-// 根据ID查询单个代理商信息
+// 代理商管理-根据ID查询单个代理商信息
 export function queryOneAgent(agentId) {
   return request({
     url: '/oss/sys/agent/getAgentInfo',
@@ -85,7 +85,7 @@ export function queryOneAgent(agentId) {
   })
 }
 
-// 获取玩家列表
+// 玩家管理-获取玩家列表
 export function getPlayerList(data) {
   return request({
     url: '/oss/sys/player/getPlayerPage',
@@ -94,7 +94,7 @@ export function getPlayerList(data) {
   })
 }
 
-// 根据ID查询单个玩家信息
+// 玩家管理-根据ID查询单个玩家信息
 export function queryOnePlayer(memberId) {
   return request({
     url: '/oss/sys/player/getPlayerInfo',
@@ -103,7 +103,7 @@ export function queryOnePlayer(memberId) {
   })
 }
 
-// 获取玩家列表
+// 玩家管理-获取玩家列表
 export function updPlayerStatus(data) {
   return request({
     url: '/oss/sys/player/resetPlayerStatus',
@@ -112,7 +112,7 @@ export function updPlayerStatus(data) {
   })
 }
 
-// 添加玩家信息
+// 玩家管理-添加玩家信息
 export function addPlayer(data) {
   return request({
     url: '/oss/sys/player/createPlayer',
@@ -121,7 +121,7 @@ export function addPlayer(data) {
   })
 }
 
-// 编辑玩家信息
+// 玩家管理-编辑玩家信息
 export function updPlayer(data) {
   return request({
     url: '/oss/sys/player/editPlayer',
@@ -130,7 +130,7 @@ export function updPlayer(data) {
   })
 }
 
-// 获取公告列表接口
+// 公告管理-获取公告列表接口
 export function getNewsList(data) {
   return request({
     url: '/oss/sys/news/getNewsPage',
@@ -139,7 +139,7 @@ export function getNewsList(data) {
   })
 }
 
-// 添加公告接口
+// 公告管理-添加公告接口
 export function addNews(data) {
   return request({
     url: '/oss/sys/news/publish',
@@ -148,7 +148,7 @@ export function addNews(data) {
   })
 }
 
-// 获取公告详情接口
+// 公告管理-获取公告详情接口
 export function getNewsDetail(newsId) {
   return request({
     url: '/oss/sys/news/getNewsInfo',
@@ -157,7 +157,7 @@ export function getNewsDetail(newsId) {
   })
 }
 
-// 修改公告接口
+// 公告管理-修改公告接口
 export function updNews(data) {
   return request({
     url: '/oss/sys/news/modify',
@@ -166,7 +166,7 @@ export function updNews(data) {
   })
 }
 
-// 获取公告详情接口
+// 公告管理-获取公告详情接口
 export function updNewsStatus(data) {
   return request({
     url: '/oss/sys/news/setNewsStatus',
@@ -206,6 +206,51 @@ export function getPlayerBeanList(data) {
 export function getPlayerBeanDetail(data) {
   return request({
     url: '/oss/sys/goldenBean/playerGBByCondition',
+    method: 'post',
+    data
+  })
+}
+
+// 商品管理-获取商品列表
+export function getGoodsList(data) {
+  return request({
+    url: '/oss/sys/goods/getGoodsPage',
+    method: 'post',
+    data
+  })
+}
+
+// 商品管理-添加商品
+export function addGoods(data) {
+  return request({
+    url: '/oss/sys/goods/add',
+    method: 'post',
+    data
+  })
+}
+
+// 商品管理-获取商品详情
+export function getGoodsDetail(goodsId) {
+  return request({
+    url: '/oss/sys/goods/getGoodsInfo',
+    method: 'post',
+    params: { goodsId }
+  })
+}
+
+// 商品管理-修改商品信息
+export function updGoods(data) {
+  return request({
+    url: '/oss/sys/goods/modify',
+    method: 'post',
+    data
+  })
+}
+
+// 商品管理-修改商品状态
+export function updGoodsStatus(data) {
+  return request({
+    url: '/oss/sys/goods/setGoodsStatus',
     method: 'post',
     data
   })
