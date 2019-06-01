@@ -85,6 +85,24 @@ export function queryOneAgent(agentId) {
   })
 }
 
+// 上下分管理-代理商上分
+export function upGoldenBean(data) {
+  return request({
+    url: '/oss/sys/agentBean/upGoldenBean',
+    method: 'post',
+    data
+  })
+}
+
+// 上下分管理-代理商下分
+export function downGoldenBean(data) {
+  return request({
+    url: '/oss/sys/agentBean/downGoldenBean',
+    method: 'post',
+    data
+  })
+}
+
 // 玩家管理-获取玩家列表
 export function getPlayerList(data) {
   return request({
