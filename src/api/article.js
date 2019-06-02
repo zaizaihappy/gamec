@@ -148,6 +148,42 @@ export function updPlayer(data) {
   })
 }
 
+// 玩家等级管理-创建玩家等级
+export function addPlayerLevel(data) {
+  return request({
+    url: '/oss/sys/playerLevel/add',
+    method: 'post',
+    data
+  })
+}
+
+// 玩家等级管理-获取玩家等级列表
+export function getPlayerLevelList(data) {
+  return request({
+    url: '/oss/sys/playerLevel/getList',
+    method: 'post',
+    data
+  })
+}
+
+// 玩家等级管理-获取玩家等级详情
+export function getPlayerLevelDetail(levelId) {
+  return request({
+    url: '/oss/sys/playerLevel/getinfo',
+    method: 'post',
+    params: { levelId }
+  })
+}
+
+// 玩家等级管理-修改玩家等级
+export function updPlayerLevel(data) {
+  return request({
+    url: '/oss/sys/playerLevel/modify',
+    method: 'post',
+    data
+  })
+}
+
 // 公告管理-获取公告列表接口
 export function getNewsList(data) {
   return request({

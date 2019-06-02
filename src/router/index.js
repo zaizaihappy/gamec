@@ -81,6 +81,18 @@ export const asyncRouterMap = [
         component: () => import('@/views/table/userManage/addUser'),
         name: 'user-add',
         meta: { title: 'user-add' }
+      },
+      {
+        path: 'user-level-list',
+        component: () => import('@/views/table/userManage/userLevelList'),
+        name: 'user-level-list',
+        meta: { title: 'user-level-list' }
+      },
+      {
+        path: 'user-add-level',
+        component: () => import('@/views/table/userManage/addLevel'),
+        name: 'user-add-level',
+        meta: { title: 'user-add-level' }
       }
     ]
   },
